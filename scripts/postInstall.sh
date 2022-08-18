@@ -1,6 +1,7 @@
 #set env vars
 set -o allexport; source .env; set +o allexport;
 
+echo "Waiting for Documize ot be ready"
 sleep 10s;
 
 META=$(curl -s http://$app_target |  grep -P -i "dbhash" | sed -e 's/^[[:space:]]*//')
