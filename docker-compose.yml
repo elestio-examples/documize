@@ -1,0 +1,31 @@
+version: "3"
+services:
+  db:
+    image: postgres:14
+    restart: always
+    #uncomment below if you want a direct access to the db
+    #ports:
+    #  - 172.17.0.1:5432:5432
+    environment:
+      POSTGRES_USER: documize
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: documize
+    volumes:
+       - ./db-data:/var/lib/postgresql/data
+
+  app:
+    image: debian:latest
+    #Community version (default)
+    command: /bin/sh -c "apt-get -qq update && apt-get -qq install -y wget && wget https://community-downloads.s3.us-east-2.amazonaws.com/documize-community-plus-linux-amd64 && chmod 777 ./documize-community-plus-linux-amd64 && ./documize-community-plus-linux-amd64"
+    #Community plus version (require free registration key)
+    #command: /bin/sh -c "apt-get -qq update && apt-get -qq install -y wget && wget https://community-downloads.s3.us-east-2.amazonaws.com/documize-community-plus-linux-amd64 && chmod 777 ./documize-community-plus-linux-amd64 && ./documize-community-plus-linux-amd64"
+    depends_on:
+      - db
+    ports:
+      - 172.17.0.1:5001:5001
+    environment:
+      DOCUMIZEPORT: 5001
+      DOCUMIZEDB: host=db port=5432 dbname=documize user=documize password=${DB_PASSWORD} sslmode=disable
+      DOCUMIZEDBTYPE: postgresql
+      DOCUMIZESALT: ${SALT}
+      DOCUMIZELOCATION: selfhost
