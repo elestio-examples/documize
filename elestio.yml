@@ -12,6 +12,11 @@ environments:
     value: "[EMAIL]"
   - key: "ADMIN_PASSWORD"
     value: "random_password"
+  - key: "DB_PASSWORD"
+    value: "random_password"
+  - key: "SALT"
+    value: "random_password"
+    
 config:
   runTime: "dockerCompose"
   version: ""
