@@ -9,7 +9,7 @@ Example CI/CD pipeline showing how to deploy Documize on Elestio.
 You are now able to sign to the Admin UI here:
     
     https://[CI_CD_DOMAIN]/
-    login: [ADMIN_LOGIN] (set in env var ADMIN_LOGIN)
+    login: [ADMIN_EMAIL] (set in env var ADMIN_EMAIL)
     password: [ADMIN_PASSWORD] (set in env var ADMIN_PASSWORD)
 
 
