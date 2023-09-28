@@ -21,6 +21,7 @@ services:
     #command: /bin/sh -c "apt-get -qq update && apt-get -qq install -y wget && wget https://community-downloads.s3.us-east-2.amazonaws.com/documize-community-plus-linux-amd64 && chmod 777 ./documize-community-plus-linux-amd64 && ./documize-community-plus-linux-amd64"
     depends_on:
       - db
+    restart: always
     ports:
       - 172.17.0.1:5001:5001
     environment:
